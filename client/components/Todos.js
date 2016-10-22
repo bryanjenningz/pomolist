@@ -6,7 +6,9 @@ export default class Todos extends Component {
 
     let todos
     try {
-      todos = JSON.parse(localStorage.getItem('todos'))
+      const todosString = localStorage.getItem('todos')
+      const parsedTodos = typeof todosString === 'string' ? JSON.parse(todosString) : []
+      todos = Array.isArray(parsedTodos) ? parsedTodos : []
     } catch (err) {
       todos = []
     }
